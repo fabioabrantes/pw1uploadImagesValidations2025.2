@@ -14,6 +14,7 @@ CREATE TABLE "users" (
 -- CreateTable
 CREATE TABLE "books" (
     "id" TEXT NOT NULL,
+    "ISBN" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "author" TEXT NOT NULL,
     "description" TEXT,
@@ -24,6 +25,17 @@ CREATE TABLE "books" (
     CONSTRAINT "books_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "images_book" (
+    "id" TEXT NOT NULL,
+    "picture_name" TEXT NOT NULL,
+    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updateAt" TIMESTAMP(3) NOT NULL,
+    "bookId" TEXT NOT NULL,
+
+    CONSTRAINT "images_book_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "users_cpf_key" ON "users"("cpf");
 
@@ -31,7 +43,10 @@ CREATE UNIQUE INDEX "users_cpf_key" ON "users"("cpf");
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "books_title_key" ON "books"("title");
+CREATE UNIQUE INDEX "books_ISBN_key" ON "books"("ISBN");
 
 -- AddForeignKey
-ALTER TABLE "books" ADD CONSTRAINT "books_userIdFK_fkey" FOREIGN KEY ("userIdFK") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "books" ADD CONSTRAINT "books_userIdFK_fkey" FOREIGN KEY ("userIdFK") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "images_book" ADD CONSTRAINT "images_book_bookId_fkey" FOREIGN KEY ("bookId") REFERENCES "books"("id") ON DELETE CASCADE ON UPDATE CASCADE;

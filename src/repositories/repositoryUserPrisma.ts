@@ -68,6 +68,12 @@ class UserRepositoryPrisma {
         email: user.email,
         password: user.password,
       },
+      select: {
+        cpf: true,
+        name: true,
+        email: true,
+        id: true,
+      },
     });
     return newUser;
   }
@@ -83,7 +89,6 @@ class UserRepositoryPrisma {
         email: updatedUser.email,
         password: updatedUser.password,
       },
-      
     });
     return userUpdated;
   }

@@ -33,6 +33,7 @@ export function validateZodUser(user: Omit<UserEntity, "id">) {
 
 export function validateZodBook(book: Omit<BookEntity, "id">) {
   const registerBookSchema = z.object({
+    ISBN: z.string("ISBN é obrigatório").trim(),
     author: z
       .string("error: campo obrigatório")
       .trim()
@@ -41,14 +42,14 @@ export function validateZodBook(book: Omit<BookEntity, "id">) {
       .string("Error: Título é obrigatório")
       .trim()
       .min(3, "error: Título deve ter pelo menos 1 caracteres"),
-    descriptionType: z
+    description: z
       .string()
       .trim()
       .min(1, "A descrição não pode conter apenas espaços"),
-    userId: z
+    userIdFK: z
       .string("ID do usuário é obrigatório")
       .uuid("ID do usuário inválido"),
-    ImagesBook: z
+    images: z
       .array(
         z.object({
           pictureName: z

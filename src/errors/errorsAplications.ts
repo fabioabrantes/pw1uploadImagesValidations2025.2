@@ -1,10 +1,12 @@
-class AppErrosCustom {
+class AppErrosCustom extends Error{
   public readonly statusCode: number;
-  public readonly message: string;
 
   constructor(message: string, statusCode: number) {
+    super(message); // chama o Error nativo
     this.statusCode = statusCode;
-    this.message = message;
+
+    // Corrige o prototype (importante no TS)
+    Object.setPrototypeOf(this, new.target.prototype);
   }
 }
 

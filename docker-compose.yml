@@ -1,0 +1,13 @@
+services:
+  postgres:
+    container_name: bd-books-container
+    image: bitnami/postgresql:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRESQL_USERNAME=fabio
+      - POSTGRESQL_PASSWORD=12345
+      - POSTGRESQL_DATABASE=databaseBooks
+    volumes:
+      - ./data/pg:/bitnami/postgresql

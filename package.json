@@ -1,0 +1,29 @@
+{
+  "name": "fundamentos_integracaobd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch -r dotenv/config src/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^7.1.0",
+    "@types/express": "^5.0.3",
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.0.2",
+    "uuid": "^13.0.0",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^2.0.0",
+    "prisma": "^7.1.0"
+  }
+}
